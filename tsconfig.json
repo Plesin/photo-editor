@@ -4,11 +4,12 @@
         "noImplicitAny": true,
         "removeComments": false,
         "preserveConstEnums": true,
-        "out": "app/js/all.js",
-        "sourceMap": true
+        "outDir": "app/js",                
+        "sourceMap": true,
+        "sourceRoot": "./ts"
     },
     "files": [
-        "ts/App.ts",
-        "ts/main.ts"        
+        "app/ts/App.ts",
+        "app/ts/main.ts"        
     ]
 }
