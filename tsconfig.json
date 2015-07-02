@@ -9,6 +9,7 @@
         "sourceRoot": "./ts"
     },
     "files": [
+        "app/ts/View.ts",
         "app/ts/App.ts",
         "app/ts/main.ts"        
     ]
