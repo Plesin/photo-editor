@@ -1,7 +1,7 @@
 module PE {
 	export class App {
 		canvas: HTMLCanvasElement;
-		view: any;
+		view: View;
 		
 		constructor() {
 			this.view = new View();	
