@@ -2,40 +2,53 @@ module PE {
 	export class App {
 		canvas: HTMLCanvasElement;
 		view: View;
+		edit: Edit;
 		
 		constructor() {
-			this.view = new View();	
+			this.init();						
 		}
 		
 		init():void {
-			this.canvas = <HTMLCanvasElement>document.querySelector("canvas");
-			this.bindEvents();
+			this.canvas = <HTMLCanvasElement>document.querySelector("canvas");			
+			this.view = new View();
+			this.bindEvents();			
 		}
 		
 		bindEvents() {
-			var input = document.querySelector("input[type=file]");
-			input.addEventListener("change", (event) => {
+			let input = document.querySelector("input[type=file]");
+			let range = <HTMLInputElement>document.querySelector("input[type=range]");
+			
+			input.addEventListener("change", event => {
 				this.handleImage(event);
 			}, false);			
+						
+			range.addEventListener("mouseup", event => {				
+				this.edit.greyScale(parseFloat(range.value));
+			}, false);
+						
+		}
+		
+		onImageLoaded(img: HTMLImageElement) {
+			let canvasSize = this.view.getImageSizeToViewPort(img);						
+			this.canvas.width = canvasSize.width;
+			this.canvas.height = canvasSize.height;
+			let context = <CanvasRenderingContext2D>this.canvas.getContext("2d");									
+			context.drawImage(img, 0, 0, canvasSize.width, canvasSize.height);
+			this.edit = new Edit(this.canvas);
+			document.querySelector("footer").classList.remove("invisible");			
 		}
 		
 		handleImage(evt:any){
-		    var reader = new FileReader();
-		    reader.onload = (event:any) => {
-		        var img = new Image();
+		    let reader = new FileReader();
+		    reader.onload = (event:any) => { 
+		        let img = new Image();
 		        img.onload = () => {					
-					var canvasSize = this.view.getImageSizeToViewPort(img);
-					console.log(canvasSize);	
-					this.canvas.width = canvasSize.width;
-					this.canvas.height = canvasSize.height;
-					var context = <CanvasRenderingContext2D>this.canvas.getContext("2d");
-					//ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvasSize.width, canvasSize.height);				
-					context.drawImage(img, 0, 0, canvasSize.width, canvasSize.height);
+					this.onImageLoaded(img);
 		        }
 		        img.src = event.target.result;
 		    }
 		    reader.readAsDataURL(evt.target.files[0]);     
-		}
+		}		
 				
 	}	
 }

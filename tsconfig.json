@@ -6,9 +6,10 @@
         "preserveConstEnums": true,
         "outDir": "app/js",                
         "sourceMap": true,
-        "sourceRoot": "./ts"
+        "sourceRoot": "../ts"
     },
     "files": [
+        "app/ts/Edit.ts",
         "app/ts/View.ts",
         "app/ts/App.ts",
         "app/ts/main.ts"        

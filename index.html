@@ -10,10 +10,14 @@
     <header></header>
     <main>
         <canvas></canvas>       
-        <input type="file"  accept=".jpg,.jpeg,.png"/>
+        <input type="file"  accept=".jpg,.jpeg,.png"/>        
     </main>
-    <footer></footer>
+    <footer>
+        <label for="brightness">Gray Scale</label>
+        <input type="range" id="brightness" min=0 value=0 max=1 step=0.1>
+    </footer>
     
+    <script src="app/js/Edit.js"></script>
     <script src="app/js/View.js"></script>        
     <script src="app/js/App.js"></script>
     <script src="app/js/main.js"></script>      

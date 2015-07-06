@@ -15,9 +15,9 @@ module PE {
 			}
 		}		
 		
-		getImageSizeToViewPort(img: ImageData) {
-			var viewPort:IViewPort = this.getViewPort();
-			var ratio:number;						
+		getImageSizeToViewPort(img: HTMLImageElement) {
+			let viewPort:IViewPort = this.getViewPort();
+			let ratio:number;			
 		
 			if (viewPort.width * img.height > viewPort.height * img.width) {
 				 ratio = viewPort.height / img.height;

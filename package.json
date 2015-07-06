@@ -1,0 +1,25 @@
+{
+  "name": "photo-editor",
+  "version": "0.0.1",
+  "description": "editing photos with HTML5 canvas",
+  "main": "\"\"",
+  "scripts": {
+    "watch": "tsc --watch",
+    "compile": "tsc",
+    "build": "npm run compile && npm run watch",    
+    "serve": "http-server -p 9191"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Plesin/photo-editor.git"
+  },
+  "author": "Radek Pleskac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Plesin/photo-editor/issues"
+  },
+  "homepage": "https://github.com/Plesin/photo-editor#readme",
+  "devDependencies": {
+    "http-server": "^0.8.0"
+  }
+}
