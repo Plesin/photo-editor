@@ -16,14 +16,19 @@ module PE {
 		
 		bindEvents() {
 			let input = document.querySelector("input[type=file]");
-			let range = <HTMLInputElement>document.querySelector("input[type=range]");
+			let greyscale = <HTMLInputElement>document.querySelector("#greyscale");
+			let contrast = <HTMLInputElement>document.querySelector("#contrast");
 			
 			input.addEventListener("change", event => {
 				this.handleImage(event);
 			}, false);			
 						
-			range.addEventListener("mouseup", event => {				
-				this.edit.greyScale(parseFloat(range.value));
+			greyscale.addEventListener("mouseup", event => {	
+				this.edit.greyScale(parseFloat(greyscale.value));
+			}, false);
+			
+			contrast.addEventListener("mouseup", event => {	
+				this.edit.contrast(parseFloat(contrast.value));
 			}, false);
 						
 		}

@@ -19,10 +19,10 @@ module PE {
 			return copy;
 		}
 		
-		greyScale(brightness: number):void {			 
+		greyScale(brightness: number): void {			 
 			let imageData = this.copyImageData();
 	        let data = imageData.data;			
-			console.log(imageData.data[0]);	
+				
 	        for (let i = 0; i < data.length; i += 4) {
 	          let value = brightness * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];	          
 	          data[i] = value;	          
@@ -31,6 +31,21 @@ module PE {
 	        }
 				        
 	        this.context.putImageData(imageData, 0, 0);
+		}
+		
+		// http://stackoverflow.com/questions/10521978/html5-canvas-image-contrast		
+		contrast(contrast:number): void {
+			let imageData = this.copyImageData();
+		    let data = imageData.data;
+		    let factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
+		
+		    for (let i = 0; i < data.length; i += 4) {
+		        data[i] = factor * (data[i] - 128) + 128;
+		        data[i+1] = factor * (data[i+1] - 128) + 128;
+		        data[i+2] = factor * (data[i+2] - 128) + 128;
+		    }
+			
+			this.context.putImageData(imageData, 0, 0);		    
 		}
 	}
 }
