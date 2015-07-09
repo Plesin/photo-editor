@@ -9,14 +9,17 @@
 
     <header></header>
     <main>
-        <canvas></canvas>       
-        <input type="file"  accept=".jpg,.jpeg,.png"/>        
+        <canvas width="0" height="0"></canvas>       
+        <input type="file"  accept=".jpg,.jpeg,.png"/><br />
+        <button>Reset</button>      
     </main>
-    <footer>
-        <label for="brightness">Gray Scale</label>
+    <footer class="invisible">
+        <label for="greyscale">Gray Scale</label>
         <input type="range" id="greyscale" min=0 value=0 max=1 step=0.1><br />
         <label for="contrast">Contrast</label>
-        <input type="range" id="contrast" min=0 value=0 max=100 step=1>
+        <input type="range" id="contrast" min=0 value=0 max=100 step=1><br />
+        <label for="brightness">Brightness</label>
+        <input type="range" id="brightness" min=-128 value=0 max=128 step=1>
     </footer>
     
     <script src="app/js/Edit.js"></script>

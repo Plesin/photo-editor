@@ -1,7 +1,12 @@
+html {
+	background-color: #444;
+	color: #fff;
+}
+
 canvas {
 	display: block;
 	margin: 0 auto;
-	box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 20px #333;
 }
 
 input[type=file] {

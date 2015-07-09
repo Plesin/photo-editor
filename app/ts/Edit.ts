@@ -12,11 +12,16 @@ module PE {
 			this.imageData = this.context.getImageData(0, 0, width, height);			
 		}		
 		
-		copyImageData() {			
+		copyImageData():ImageData {			
 			let copy:ImageData = this.context.createImageData(this.imageData.width, this.imageData.height);
 			let data = <any>copy.data; // should be of type Uint8ClampedArray			
 			data.set(this.imageData.data);			
 			return copy;
+		}
+		
+		resetImage():void {
+			this.context.putImageData(this.imageData, 0, 0);
+			// TODO reset range values			
 		}
 		
 		greyScale(brightness: number): void {			 
@@ -46,6 +51,19 @@ module PE {
 		    }
 			
 			this.context.putImageData(imageData, 0, 0);		    
+		}
+		
+		brightness(step: number) {
+			let imageData = this.copyImageData();
+		    let data = imageData.data;			
+			
+			for (let i = 0; i < data.length; i += 4) {
+		        data[i] += step;
+		        data[i+1] += step;
+		        data[i+2] += step;
+		    }
+			
+			this.context.putImageData(imageData, 0, 0);
 		}
 	}
 }

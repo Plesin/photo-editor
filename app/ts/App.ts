@@ -18,17 +18,29 @@ module PE {
 			let input = document.querySelector("input[type=file]");
 			let greyscale = <HTMLInputElement>document.querySelector("#greyscale");
 			let contrast = <HTMLInputElement>document.querySelector("#contrast");
+			let brightness = <HTMLInputElement>document.querySelector("#brightness");
+			let resetButton = <HTMLInputElement>document.querySelector("button");
 			
 			input.addEventListener("change", event => {
 				this.handleImage(event);
 			}, false);			
-						
+			
+			// TODO use generic handler for all range elements, currently issue
+			// with this.edit[method] call with TypeScript			
 			greyscale.addEventListener("mouseup", event => {	
 				this.edit.greyScale(parseFloat(greyscale.value));
 			}, false);
 			
 			contrast.addEventListener("mouseup", event => {	
 				this.edit.contrast(parseFloat(contrast.value));
+			}, false);
+			
+			brightness.addEventListener("mouseup", event => {	
+				this.edit.brightness(parseFloat(brightness.value));
+			}, false);
+			
+			resetButton.addEventListener("click", event => {	
+				this.edit.resetImage();
 			}, false);
 						
 		}
