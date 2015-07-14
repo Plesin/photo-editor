@@ -36,12 +36,12 @@ module PE {
 			this.ranges.forEach((range:HTMLInputElement) => {
 				range.addEventListener("change", (event:MouseEvent) => {
 					let editType:string = range.dataset["editType"];
-					app.handleAppEvent(APP_MSG_APPLY_EDIT, { editType: editType, value: parseFloat(range.value) });					
+					app.handleAppMessage(APP_MSG_APPLY_EDIT, { editType: editType, value: parseFloat(range.value) });					
 				});
 			});
 			
 			this.resetButton.addEventListener("click", event => {
-				app.handleAppEvent(APP_MSG_RESET_IMAGE, null);				
+				app.handleAppMessage(APP_MSG_RESET_IMAGE, null);				
 			}, false);	
 		}
 		
@@ -52,7 +52,7 @@ module PE {
 		
 		private onImageLoaded(img: HTMLImageElement) {			
 			this.renderImage(img);
-			app.handleAppEvent(APP_MSG_INIT_EDIT, this.canvas);
+			app.handleAppMessage(APP_MSG_INIT_EDIT, this.canvas);
 			this.showEditControls();			
 		}
 		

@@ -11,7 +11,7 @@ module PE {
 			this.view = new View();			
 		}
 		
-		handleAppEvent(appEvent:string, data:any) {
+		handleAppMessage(appEvent:string, data:any) {
 			switch(appEvent) {
 				case "init-edit": 
 					this.edit = new Edit(data);
