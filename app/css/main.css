@@ -10,10 +10,18 @@ canvas {
 }
 
 input[type=file] {
-	padding: 10px;
+	padding: 10px;	
+}
+
+input[type=range] {
+	display: block;
 	
 }
 
 .invisible {
 	display: none !important;
+}
+
+.block {
+	display: block;
 }

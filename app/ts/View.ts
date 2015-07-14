@@ -8,13 +8,16 @@ module PE {
 		canvas: HTMLCanvasElement;
 		fileInput: HTMLInputElement;
 		resetButton: HTMLButtonElement;
+		downloadLink: HTMLAnchorElement;
 		ranges: Array<HTMLInputElement>;
 		footer: HTMLElement;
+		fileName: string = "";
 		
 		constructor() {			
 			this.canvas = <HTMLCanvasElement>document.querySelector("canvas");
 			this.fileInput = <HTMLInputElement>document.querySelector("input[type=file]");
-			this.resetButton = <HTMLButtonElement>document.querySelector("button");
+			this.resetButton = <HTMLButtonElement>document.querySelector("button#reset");
+			this.downloadLink = <HTMLAnchorElement>document.querySelector("#download");
 			this.ranges = [].slice.call(document.querySelectorAll("input[type=range]"));
 			this.footer = <HTMLElement>document.querySelector("footer");
 			this.bindEvents();
@@ -29,20 +32,27 @@ module PE {
 		}								
 
 		private bindEvents() {
-			this.fileInput.addEventListener("change", event => {
+			this.fileInput.addEventListener("change", (event:Event) => {
 				this.handleImage(event);
 			}, false);
 			
 			this.ranges.forEach((range:HTMLInputElement) => {
-				range.addEventListener("change", (event:MouseEvent) => {
+				range.addEventListener("change", (event:Event) => {
 					let editType:string = range.dataset["editType"];
 					app.handleAppMessage(APP_MSG_APPLY_EDIT, { editType: editType, value: parseFloat(range.value) });					
 				});
 			});
 			
-			this.resetButton.addEventListener("click", event => {
+			this.resetButton.addEventListener("click", (event:MouseEvent) => {
 				app.handleAppMessage(APP_MSG_RESET_IMAGE, null);				
-			}, false);	
+			}, false);
+			
+			this.downloadLink.addEventListener("click", (event:MouseEvent) => {
+			    var newFileName: string = this.fileName.replace(".", "_copy.");
+				var dataURL = this.canvas.toDataURL("image/png");
+				this.downloadLink.setAttribute("download", newFileName);
+			    this.downloadLink.href = dataURL;
+			});	
 		}
 		
 		private showEditControls(): void {
@@ -63,8 +73,9 @@ module PE {
 		        img.onload = () => {					
 					this.onImageLoaded(img);
 		        }
-		        img.src = event.target.result;
+		        img.src = event.target.result;				
 		    }
+			this.fileName = evt.target.files[0].name;
 		    reader.readAsDataURL(evt.target.files[0]);     
 		}
 		
