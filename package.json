@@ -6,7 +6,8 @@
   "scripts": {
     "watch": "tsc --watch",
     "compile": "tsc",
-    "build": "npm run compile && npm run watch",    
+    "open-browser": "node scripts/open.js",
+    "build": "npm run compile && npm run open-browser && npm run serve",    
     "serve": "http-server -p 9191"
   },
   "repository": {
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/Plesin/photo-editor#readme",
   "devDependencies": {
-    "http-server": "^0.8.0"
+    "http-server": "^0.8.0",
+    "opn": "^3.0.2"
   }
 }
