@@ -14,12 +14,12 @@ module PE {
 		fileName: string = "";
 		
 		constructor() {			
-			this.canvas = <HTMLCanvasElement>document.querySelector("canvas");
-			this.fileInput = <HTMLInputElement>document.querySelector("input[type=file]");
-			this.resetButton = <HTMLButtonElement>document.querySelector("button#reset");
-			this.downloadLink = <HTMLAnchorElement>document.querySelector("#download");
-			this.ranges = [].slice.call(document.querySelectorAll("input[type=range]"));
-			this.footer = <HTMLElement>document.querySelector("footer");
+			this.canvas = <HTMLCanvasElement>dom.qs("canvas");
+			this.fileInput = <HTMLInputElement>dom.qs("input[type=file]");
+			this.resetButton = <HTMLButtonElement>dom.qs("button#reset");
+			this.downloadLink = <HTMLAnchorElement>dom.qs("#download");
+			this.ranges = dom.qsa("input[type=range]");
+			this.footer = dom.qs("footer");
 			this.bindEvents();
 		}
 		

@@ -2,5 +2,6 @@
 
 Run in Chrome browser:
 - npm install -g typescript
+- npm install -g http-server
 - npm install
 - npm run build - (build typescript, run a server and open chrome)
